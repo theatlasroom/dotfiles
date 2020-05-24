@@ -100,7 +100,8 @@ defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.Web
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 # Misc: disable Dictionary results
-defaults write com.apple.spotlight DictionaryLookupEnabled -bool false
+# defaults write com.apple.spotlight DictionaryLookupEnabled -bool false
+# Status API Training Shop Blog About
 
 # Use AirDrop over every interface. srsly this should be a default.
-defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
+# defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1

@@ -6,6 +6,9 @@
         protocol = https
 
 [alias]
+        # Display concise repository status
+        wtf  = !$DOTFILES/bin/git-wtf
+
         # Delete all local branches that have been merged into HEAD
         dall = branch -d `git branch --merged | grep -v '^*' | grep -v 'master' | tr -d '\n'`
 
@@ -20,6 +23,87 @@
         aliases = config --get-regexp ^alias\\.
         fo = fetch origin
 
+        # Diffs
+        d = diff
+        sdiff = diff --shortstat
+        ndiff = diff --name-only
+        count = !git shortlog -sn
+
+        # Logs
+        plog  = log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+        logme = log --author="Kylie"
+        blog  = log --graph --decorate --pretty=oneline --abbrev-commit
+        ls = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset \
+     %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --name-only
+
+        # Pull/Push
+        p  = push
+        pu = push -u
+        pm  = pull origin master
+        pd  = pull origin develop
+        pum = push origin master
+        pud = push origin develop
+
+        # Safeguards
+        rebase = rebase -i
+        blame = blame -w --no-merges
+
+        # Custom graph log (append any tree-ish)
+        graph = log --pretty=nice --date-order --graph
+        # Custom graph log for all branches
+        grapha = log --pretty=nice --date-order --graph --all
+
+        # Custom pretty log
+        logp = log --pretty=nice --date-order
+
+        # Diffstat log
+        logst = log --stat
+        # Short format diffstat log
+        logsf = log --stat --format=oneline --abbrev-commit
+
+        # Fetch and checkout a GitHub Pull Request from a remote (defaults to `origin`)
+        # Use: `git gh-pr 123` or `git gh-pr 123 upstream`
+        gh-pr = !bash -c 'git fetch -fu ${2:-origin} refs/pull/$1/head:gh-pr/$1 && git checkout gh-pr/$1' -
+
+        # Find out who is currently active on the repository
+        # Displays committers in descending order of number of commits
+        who = shortlog --numbered --summary --email --no-merges --since="3 months"
+
+        # Scripts
+        promote = !$ZSH/bin/git-promote
+        wtf     = !$ZSH/bin/git-wtf
+        rank-contributors = !$ZSH/bin/git-rank-contributors
+
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+        ui = true
+
+[color "branch"]
+        current = yellow reverse
+        local = yellow
+        remote = green
+
+[color "status"]
+        added = green
+        changed = yellow
+        untracked = red
+
+[core]
+        attributesfile = ~/.gitattributes
+        excludesfile = ~/.gitignore
+        excludesfile = ~/.gitignore
+        editor = vim
+        ignorecase = false
+
+[apply]
+        whitespace = nowarn
+
+[merge]
+        # Include summaries of merged commits in newly created merge commit messages
+        log = true
+
 [mergetool]
         keepBackup = false
 
@@ -27,9 +111,23 @@
         remote = origin
         merge = refs/heads/master
 
+[difftool]
+        prompt = false
+
 [help]
         autocorrect = 0
 
+[push]
+        # See `git help config` (search for push.default)
+        # for more information on different options of the below setting.
+        #
+        # Setting to git 2.0 default to suppress warning message
+        default = simple
 [user]
 	name = Kylie Stewart
 	email = kylieastewart@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
