@@ -131,3 +131,14 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+
+# This is Git's per-user configuration file.
+# Use conditional git includes to automatically configure our git details
+# https://www.kevinkuszyk.com/2018/12/10/git-tips-6-using-git-with-multiple-email-addresses/
+[includeIf "gitdir:repos/"]
+        path = .gitconfig-atlas
+[includeIf "gitdir:glab/"]
+        path = .gitconfig-glab
+[protocol]
+	version = 2

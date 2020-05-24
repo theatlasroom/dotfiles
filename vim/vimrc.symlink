@@ -50,6 +50,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'git@github.com:kien/ctrlp.vim.git'
 
 " Language specific
+Plug 'sheerun/vim-polyglot'
 
 " Initialize plugin system
 call plug#end()
