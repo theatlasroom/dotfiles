@@ -12,17 +12,6 @@
         # Delete all local branches that have been merged into HEAD
         dall = branch -d `git branch --merged | grep -v '^*' | grep -v 'master' | tr -d '\n'`
 
-        # shortcuts
-        co = checkout
-        c  = commit
-        s  = status -sb
-        b  = branch
-        a  = add
-        aa = add -A .
-        undo = reset --soft HEAD~1
-        aliases = config --get-regexp ^alias\\.
-        fo = fetch origin
-
         # Diffs
         d = diff
         sdiff = diff --shortstat
@@ -35,14 +24,6 @@
         blog  = log --graph --decorate --pretty=oneline --abbrev-commit
         ls = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset \
      %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --name-only
-
-        # Pull/Push
-        p  = push
-        pu = push -u
-        pm  = pull origin master
-        pd  = pull origin develop
-        pum = push origin master
-        pud = push origin develop
 
         # Safeguards
         rebase = rebase -i
@@ -97,19 +78,8 @@
         editor = vi
         ignorecase = false
 
-[apply]
-        whitespace = nowarn
-
-[merge]
-        # Include summaries of merged commits in newly created merge commit messages
-        log = true
-
 [mergetool]
         keepBackup = false
-
-[branch "master"]
-        remote = origin
-        merge = refs/heads/master
 
 [difftool]
         prompt = false
