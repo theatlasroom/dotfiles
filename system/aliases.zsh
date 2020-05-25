@@ -26,7 +26,9 @@ alias rud="rustup doc --book"
 # edit / reload zsh config
 alias szsh="source ~/.zshrc"
 alias vzsh="vi ~/.zshrc"
-alias valias="vi ~/.aliases"
+alias valias="vi ~/.dotfiles/system/aliases.zsh"
+alias viedit="vi ~/.vimrc"
+alias nviedit="vi ~/.nvimrc"
 
 # misc
 alias lc='colorls -lA --sd'

@@ -1,3 +1,9 @@
+# DEBUGGING
+# Debug mode
+# set -x
+# Show all sourced files
+# setopt SOURCE_TRACE
+
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
@@ -24,9 +30,6 @@ for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
 do
   source $file
 done
-
-# DEBUG
-# set -x
 
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
@@ -77,9 +80,6 @@ plugins=(
 
 # Load zpretzo config
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-
-# use GRC for better terminal colours
-[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
 # Add postgres to path
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
