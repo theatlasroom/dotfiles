@@ -9,8 +9,9 @@ then
   alias la='gls -A --color'
 fi
 
-# when i say vi, i actually mean vim
-alias vi="/usr/local/bin/nvim"
+# when i say vi(m), i actually mean nvim
+# alias vi="/usr/local/bin/nvim"
+alias vim="/usr/local/bin/nvim"
 
 # download a gitignore file
 fetchignore(){

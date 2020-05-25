@@ -28,6 +28,7 @@ Plug 'morhetz/gruvbox'
 Plug 'iCyMind/NeoSolarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
 
 " Utils
 Plug 'jiangmiao/auto-pairs'
@@ -43,7 +44,6 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'airblade/vim-gitgutter'
 
 " File / browsing / navigation
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-vinegar'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 Plug 'jremmen/vim-ripgrep'
@@ -58,16 +58,12 @@ call plug#end()
 " GENERAL
 let mapleader = "<Esc>"
 
-let g:netrw_browse_split = 2
-let g:netrw_banner = 0
-let g:netrw_winsize = 25
-
-
 " THEMING
 set termguicolors
 " colorscheme gruvbox
 colorscheme NeoSolarized
 set background=dark
+set encoding=UTF-8
 
 " Airline config
 let g:airline_theme='angr' " <theme> is a valid theme name
@@ -113,3 +109,50 @@ let g:neosolarized_italic = 0
 " text output by commands like `ls` aren't what you expect, you might want to
 " try disabling this option. Default value:
 let g:neosolarized_termBoldAsBright = 1
+
+" NETRW config
+" configure the netrw file explorer
+" make netrw like nerdtree
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+" Auto open the explorer
+" augroup ProjectDrawer
+"   autocmd!
+"   autocmd VimEnter * :Vexplore
+" augroup END
+
+" Change directory to the current buffer when opening files.
+set autochdir
+
+" Toggle netrw to open / close on the left
+com!  -nargs=* -bar -bang -complete=dir  Lexplore  call netrw#Lexplore(<q-args>, <bang>0)
+
+fun! Lexplore(dir, right)
+  if exists("t:netrw_lexbufnr")
+  " close down netrw explorer window
+  let lexwinnr = bufwinnr(t:netrw_lexbufnr)
+  if lexwinnr != -1
+    let curwin = winnr()
+    exe lexwinnr."wincmd w"
+    close
+    exe curwin."wincmd w"
+  endif
+  unlet t:netrw_lexbufnr
+
+  else
+    " open netrw explorer window in the dir of current file
+    " (even on remote files)
+    let path = substitute(exists("b:netrw_curdir")? b:netrw_curdir : expand("%:p"), '^\(.*[/\\]\)[^/\\]*$','\1','e')
+    exe (a:right? "botright" : "topleft")." vertical ".((g:netrw_winsize > 0)? (g:netrw_winsize*winwidth(0))/100 : -g:netrw_winsize) . " new"
+    if a:dir != ""
+      exe "Explore ".a:dir
+    else
+      exe "Explore ".path
+    endif
+    setlocal winfixwidth
+    let t:netrw_lexbufnr = bufnr("%")
+  endif
+endfun

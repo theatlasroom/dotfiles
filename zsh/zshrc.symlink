@@ -1,9 +1,6 @@
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
-# your project folder that we can `c [tab]` to
-export PROJECTS=~/Code
-
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
 # you'll have access to them in your scripts.
@@ -28,6 +25,9 @@ do
   source $file
 done
 
+# DEBUG
+# set -x
+
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
 compinit
@@ -40,6 +40,10 @@ done
 
 unset config_files
 
+# auto cd into directories
+# no need to type cd blah/blah/blah
+setopt autocd
+
 # Better history
 # Credits to https://coderwall.com/p/jpj_6q/zsh-better-history-searching-with-arrow-keys
 autoload -U up-line-or-beginning-search
@@ -49,5 +53,46 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
+# Set current user
+DEFAULT_USER="gotenks"
+
+# Which plugins would you like to load?
+# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  git
+  osx
+  nvm
+  httpie
+  golang
+  rust
+  rvm
+  themes
+  battery
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
+
 # Load zpretzo config
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+
+# use GRC for better terminal colours
+[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+
+# Add postgres to path
+export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+
+. /usr/local/opt/asdf/asdf.sh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+
+# Enable gdk autocompletion
+autoload bashcompinit
+bashcompinit
+
+source ~/glab/gdk/support/completions/gdk.bash
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
