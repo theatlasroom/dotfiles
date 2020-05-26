@@ -9,6 +9,9 @@
 # Icon must end with two \r
 Icon
 
+# Editor settings
+.editorconfig
+Session.vim
 
 # Thumbnails
 ._*

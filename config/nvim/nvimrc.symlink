@@ -5,6 +5,8 @@ set encoding=UTF-8
 set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
+" 1 tab == 4 spaces
+set tabstop=4
 set smartindent
 set nu
 set nowrap
@@ -45,6 +47,7 @@ Plug 'lyuts/vim-rtags'
 Plug 'mbbill/undotree'
 Plug 'machakann/vim-highlightedyank'
 Plug 'airblade/vim-gitgutter'
+Plug 'janko/vim-test' " run tests withing vim
 
 " File / browsing / navigation
 Plug 'preservim/nerdtree'
@@ -52,11 +55,30 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep'
-Plug 'git@github.com:kien/ctrlp.vim.git'
+" Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'farmergreg/vim-lastplace' " reopen files at your last edit position
+Plug 'tpope/vim-obsession' " save session on close
+" Plug 'unblevable/quick-scope' " navigate a line with scopes
 
 " Language specific
 Plug 'sheerun/vim-polyglot'
+" highlights the XML/HTML tags that enclose your cursor location
+Plug 'Valloric/MatchTagAlways', {'for': ['html', 'xml', 'xhtml', 'vue']}
+Plug 'mattn/emmet-vim'
+" auto end ruby blocks
+Plug 'tpope/vim-endwise'
+Plug 'dense-analysis/ale'
+
+" Languages / syntax
+Plug 'pangloss/vim-javascript'
+Plug 'posva/vim-vue'
+Plug 'elzr/vim-json'
+Plug 'tpope/vim-haml'
+Plug 'cakebaker/scss-syntax.vim', {'for': 'scss'}
+Plug 'wavded/vim-stylus', {'for': 'stylus'}
+Plug 'ap/vim-css-color', {'for': ['css', 'scss', 'sass', 'stylus', 'vue', 'html']}
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+
 
 " Initialize plugin system
 call plug#end()

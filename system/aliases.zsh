@@ -9,9 +9,14 @@ then
   alias la='gls -A --color'
 fi
 
+alias dotfs="~/.dotfiles"
+alias vdotfs="vim dotfs"
+
 # when i say vi(m), i actually mean nvim
 # alias vi="/usr/local/bin/nvim"
 alias vim="/usr/local/bin/nvim"
+alias vims="vim -S"
+alias nvims="nvim -S"
 
 # download a gitignore file
 fetchignore(){
