@@ -15,19 +15,3 @@ alias gwip="whipit"
 # git
 alias gfix='git commit -a --fixup'
 alias gpfl='git push --force-with-lease'
-
-# Checkout a tag gctag "v12.10-ee"
-gitcheckout-tag(){
-  TAG="$1"
-
-  git checkout tags/"$TAG" -b "$TAG"
-  
-  # ignore the db file
-  git checkout db
-
-  # refresh gdk and assets
-  yarn && bin/rake db:migrate RAILS_ENV=development
-  gdk reconfigure
-  gdk restart
-}
-alias gctag="gitcheckout-tag"

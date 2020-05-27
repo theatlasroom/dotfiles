@@ -16,11 +16,12 @@ alias killjag="killall -KILL jaeger-all-in-one"
 # kill glab
 alias killglab="killnode && killruby && killpostgres && killjag && killghrp"
 
-# glab
+# glab dirs
 alias foss="~/glab/gdk-foss/gitlab"
 alias ee="~/glab/gdk/gitlab"
 alias gl="ee"
 alias glab="ee"
+
 alias killgdk="ps aux | grep gitlab | awk '{print $2}' | xargs kill"
 alias wtfgitaly="ps aux | grep gitaly"
 alias gupdate="gdk update && gco db/schema.rb"
@@ -31,8 +32,10 @@ alias grun="gdk run"
 alias gstart="gdk start"
 alias grestart="gdk stop && gdk start"
 alias gstop="gdk stop"
+# Skip pipelines on push, not quite working 🤔
 alias gpnoci="git push -o ci.skip"
 alias gpflnoci="git push -o ci.skip --force-with-lease"
+# Refresh gdk
 gdk-refresh() {
 		yarn && bundle
 		bin/rails db:migrate RAILS_ENV=development
@@ -44,9 +47,12 @@ gffenable(){
 gffdisable(){
   echo "Feature.disable(:$1)" | bundle exec rails c
 }
+# Enable / disable feature flags
 alias gffe="gffenable"
 alias gffd="gffdisable"
 
+# Attempts to automatically update master and return to the current branch
+# Useful just before a rebase
 gupdate-master(){
   # Store the current branch name
   branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
@@ -75,3 +81,19 @@ gupdate-master(){
   gfresh
 }
 alias gupd="gupdate-master"
+
+# Checkout a tag gctag "v12.10-ee"
+gitcheckout-tag(){
+  TAG="$1"
+
+  git checkout tags/"$TAG" -b "$TAG"
+  
+  # ignore the db file
+  git checkout db
+
+  # refresh gdk and assets
+  yarn && bin/rake db:migrate RAILS_ENV=development
+  gdk reconfigure
+  gdk restart
+}
+alias gctag="gitcheckout-tag"
