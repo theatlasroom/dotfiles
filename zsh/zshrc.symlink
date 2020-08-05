@@ -81,18 +81,11 @@ plugins=(
 # Load zpretzo config
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
-# Add postgres to path
-export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
-
+# Load asdf
 . /usr/local/opt/asdf/asdf.sh
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 
 # Enable gdk autocompletion
 autoload bashcompinit
 bashcompinit
 
 source ~/glab/gdk/support/completions/gdk.bash
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"

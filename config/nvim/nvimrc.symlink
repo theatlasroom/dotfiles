@@ -36,7 +36,6 @@ Plug 'ryanoasis/vim-devicons'
 " Utils
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdcommenter'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'junegunn/vim-easy-align'
 Plug 'vim-utils/vim-man'
@@ -68,6 +67,8 @@ Plug 'mattn/emmet-vim'
 " auto end ruby blocks
 Plug 'tpope/vim-endwise'
 Plug 'dense-analysis/ale'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'neoclide/coc.nvim', {'brnach': 'release'} " neovim code complete
 
 " Languages / syntax
 Plug 'pangloss/vim-javascript'
@@ -221,6 +222,23 @@ nnoremap <leader><CR>     :Buffers<CR>
 nnoremap <leader>fl       :Lines<CR>
 nnoremap <leader>ag       :Ag! <C-R><C-W><CR>
 nnoremap <leader>m        :History<CR>
+
+" ALE
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
+" only lint on save
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
+" Define our linters
+let g:ale_linters = {
+\	'javascript': ['prettier','eslint'],
+\	'go': ['gofmt', 'goimports']
+\}
 
 " NerdTree settings
 map <C-P> :NERDTreeToggle<CR>
