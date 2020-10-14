@@ -48,7 +48,12 @@ alias checkport="cport"
 
 # Grep rake routes
 grakeout(){
+ bin/rails routes -c "$1" --expanded
+}
+#
+grakeout_simple(){
   bin/rake routes | grep "$1" 
 }
 
 alias groute="grakeout"
+alias groutesim="grakeout_simple"
