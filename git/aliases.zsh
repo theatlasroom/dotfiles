@@ -15,3 +15,5 @@ alias gwip="whipit"
 # git
 alias gfix='git commit -a --fixup'
 alias gpfl='git push --force-with-lease'
+alias gdf='git diff --name-only'
+alias gdn='gdf'

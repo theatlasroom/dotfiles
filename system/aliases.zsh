@@ -37,23 +37,9 @@ alias nviedit="vi ~/.nvimrc"
 
 # misc
 alias lc='colorls -lA --sd'
-alias gdf='git diff --name-only'
-alias gdn='git diff --name-only'
 
 # Check used ports
 cport(){
   lsof -nP -i4TCP:"$1" | grep LISTEN
 }
 alias checkport="cport"
-
-# Grep rake routes
-grakeout(){
- bin/rails routes -c "$1" --expanded
-}
-#
-grakeout_simple(){
-  bin/rake routes | grep "$1" 
-}
-
-alias groute="grakeout"
-alias groutesim="grakeout_simple"

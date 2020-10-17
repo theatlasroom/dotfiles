@@ -4,6 +4,9 @@ alias killnode="killall -KILL node"
 # kill ruby
 alias killruby="killall -KILL ruby"
 
+# kill spring
+alias killspring="killall spring"
+
 # kill postgres 
 alias killpostgres="killall -KILL postgres"
 
@@ -21,6 +24,7 @@ alias foss="~/glab/gdk-foss/gitlab"
 alias ee="~/glab/gdk/gitlab"
 alias gl="ee"
 alias glab="ee"
+alias glui="~/glab/gitlab-ui"
 
 alias killgdk="ps aux | grep gitlab | awk '{print $2}' | xargs kill"
 alias wtfgitaly="ps aux | grep gitaly"
@@ -48,6 +52,7 @@ gffdisable(){
   echo "Feature.disable(:$1)" | bundle exec rails c
 }
 # Enable / disable feature flags
+# $ gffe feature_flag_to_enable
 alias gffe="gffenable"
 alias gffd="gffdisable"
 
@@ -68,7 +73,7 @@ gupdate-master(){
   echo "Checking out the schema file"
 
   # remove the annoying changes in db/schema
-  git checkout db
+  gco db
 
   echo "Restoring branch $branch_name"
 
