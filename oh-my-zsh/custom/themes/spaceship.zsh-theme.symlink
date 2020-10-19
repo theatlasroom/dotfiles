@@ -225,7 +225,7 @@ Which plugins would you like to load?
 plugins=(
   git
   osx
-  nvm
+  asdf
   httpie
   golang
   rust

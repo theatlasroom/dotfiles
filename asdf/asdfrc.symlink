@@ -1,1 +1,3 @@
 always_keep_download = no
+# Ensures we can still use `.nvmrc` defined nodes
+legacy_version_file = yes

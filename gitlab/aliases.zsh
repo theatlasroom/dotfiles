@@ -73,7 +73,7 @@ gupdate-master(){
   echo "Checking out the schema file"
 
   # remove the annoying changes in db/schema
-  gco db
+  git checkout db
 
   echo "Restoring branch $branch_name"
 

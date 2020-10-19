@@ -71,15 +71,6 @@
 # #                                          JavaScript
 # ####################################################################################################
 
-# nvm_prompt() {
-#   $(type nvm >/dev/null 2>&1) || return
-
-#   local nvm_prompt
-#   nvm_prompt=$(nvm current 2>/dev/null)
-#   [[ "${nvm_prompt}x" == "x" ]] && return
-#   echo "%{$fg_bold[yellow]%}Node $nvm_prompt%{$reset_color%}"
-# }
-
 # npm_prompt() {
 #   $(type npm >/dev/null 2>&1) || return
 
