@@ -229,7 +229,6 @@ plugins=(
   httpie
   golang
   rust
-  rvm
   themes
   battery
   zsh-syntax-highlighting
