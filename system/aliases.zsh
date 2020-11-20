@@ -20,7 +20,7 @@ alias nvims="nvim -S"
 
 # download a gitignore file
 fetchignore(){
-  curl http://www.gitignore.io/api/"$1" >> .gitignore
+  curl -L http://www.gitignore.io/api/"$1" >> .gitignore
 }
 
 alias getignore="fetchignore"
