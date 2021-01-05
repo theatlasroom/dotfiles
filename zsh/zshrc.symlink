@@ -77,7 +77,7 @@ plugins=(
   zsh-autosuggestions
 )
 
-# Load zpretzo config
+# Load zprezto config
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
 # Load asdf
@@ -86,8 +86,6 @@ source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 # Enable gdk autocompletion
 autoload bashcompinit
 bashcompinit
-
-source ~/glab/gdk/support/completions/gdk.bash
 
 # Added by GDK bootstrap
 export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:${PKG_CONFIG_PATH}"
