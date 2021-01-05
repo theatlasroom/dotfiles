@@ -1,5 +1,7 @@
 # install neovim
 # note: now installed via brew
+# Install some plugins
+sh ./plugins.sh
 
 # set symlinks to the vim dirs
 ln -s ~/.dotfiles/config/nvim/.vim ~/.vim
