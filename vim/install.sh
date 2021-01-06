@@ -3,8 +3,7 @@
 
 # set symlinks to the vim dirs
 ln -s ~/.dotfiles/config/nvim/.vim ~/.vim
-ln -s ~/.dotfiles/config/nvim/init.vim ~/.config/nvim/init.vim
-ln -s ~/.dotfiles/config/nvim/.netrwhist ~/.config/nvim/.netrwhist
+ln -s ~/.dotfiles/config/nvim ~/.config/nvim
 
 # Install some plugins
 curl -fLo ~/.dotfiles/config/nvim/.vim/autoload/plug.vim --create-dirs \
