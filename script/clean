@@ -1,0 +1,3 @@
+# Clean some problematic dirs when we want to reinstall
+rm -rf ~/.oh-my-zsh
+rm -rf ~/.zprezto
