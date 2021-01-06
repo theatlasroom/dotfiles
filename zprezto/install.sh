@@ -3,7 +3,7 @@ git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$H
 # mkdir "~/.zprezto/contrib"
 
 # # Copy default config files 
-sh ~/.dotfiles/zprezto/copy-deps.sh
+# sh ~/.dotfiles/zprezto/copy-deps.sh
 
 # clone zprezto-contrib
 git clone --recurse-submodules https://github.com/belak/prezto-contrib "${ZDOTDIR:-$HOME}/.zprezto/contrib"
