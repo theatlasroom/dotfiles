@@ -4,3 +4,4 @@ rust 1.47.0
 elixir 1.11.1-otp-23
 yarn 1.22.10
 nodejs 14.14.0
+postgres 11.9
