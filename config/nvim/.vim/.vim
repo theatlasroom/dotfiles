@@ -1,0 +1,1 @@
+/Users/ezekiel/.dotfiles/config/nvim/.vim
