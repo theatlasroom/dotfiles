@@ -1,0 +1,246 @@
+" basic syntax highlighting
+syntax on
+
+set encoding=UTF-8
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+" 1 tab == 4 spaces
+set tabstop=4
+set smartindent
+set nu
+set nowrap
+set smartcase
+set noswapfile
+set nobackup
+set incsearch
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Theme / Colour schemes
+Plug 'morhetz/gruvbox'
+Plug 'iCyMind/NeoSolarized'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
+
+" Utils
+Plug 'jiangmiao/auto-pairs'
+Plug 'scrooloose/nerdcommenter'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'junegunn/vim-easy-align'
+Plug 'vim-utils/vim-man'
+Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'lyuts/vim-rtags'
+Plug 'mbbill/undotree'
+Plug 'machakann/vim-highlightedyank'
+Plug 'airblade/vim-gitgutter'
+Plug 'janko/vim-test' " run tests withing vim
+
+" File / browsing / navigation
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'jremmen/vim-ripgrep'
+" Plug 'git@github.com:kien/ctrlp.vim.git'
+Plug 'farmergreg/vim-lastplace' " reopen files at your last edit position
+Plug 'tpope/vim-obsession' " save session on close
+" Plug 'unblevable/quick-scope' " navigate a line with scopes
+
+" Language specific
+Plug 'sheerun/vim-polyglot'
+" highlights the XML/HTML tags that enclose your cursor location
+Plug 'Valloric/MatchTagAlways', {'for': ['html', 'xml', 'xhtml', 'vue']}
+Plug 'mattn/emmet-vim'
+" auto end ruby blocks
+Plug 'tpope/vim-endwise'
+Plug 'dense-analysis/ale'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'neoclide/coc.nvim', {'brnach': 'release'} " neovim code complete
+
+" Languages / syntax
+Plug 'pangloss/vim-javascript'
+Plug 'posva/vim-vue'
+Plug 'elzr/vim-json'
+Plug 'tpope/vim-haml'
+Plug 'cakebaker/scss-syntax.vim', {'for': 'scss'}
+Plug 'wavded/vim-stylus', {'for': 'stylus'}
+Plug 'ap/vim-css-color', {'for': ['css', 'scss', 'sass', 'stylus', 'vue', 'html']}
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+
+
+" Initialize plugin system
+call plug#end()
+
+" GENERAL
+" let mapleader = "Esc"
+
+" THEMING
+set termguicolors
+" colorscheme gruvbox
+colorscheme NeoSolarized
+set background=dark
+set encoding=UTF-8
+
+" Airline config
+let g:airline_theme='angr' " <theme> is a valid theme name
+
+" Highlight yanked sections
+hi HighlightedyankRegion cterm=reverse gui=reverse
+" set highlight duration time to 1000 ms, i.e., 1 second
+let g:highlightedyank_highlight_duration = 1000
+
+" Plugin configs
+" we want rg to search the git root and abide by the .gitignore
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
+
+" Settings for CtrlP
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_use_caching = 0
+
+" Solarized theme config
+" Default value is "normal", Setting this option to "high" or "low" does use the
+" same Solarized palette but simply shifts some values up or down in order to
+" expand or compress the tonal range displayed.
+let g:neosolarized_contrast = "normal"
+
+" Special characters such as trailing whitespace, tabs, newlines, when displayed
+" using ":set list" can be set to one of three levels depending on your needs.
+" Default value is "normal". Provide "high" and "low" options.
+let g:neosolarized_visibility = "normal"
+
+" I make vertSplitBar a transparent background color. If you like the origin
+" solarized vertSplitBar style more, set this value to 0.
+let g:neosolarized_vertSplitBgTrans = 1
+
+" If you wish to enable/disable NeoSolarized from displaying bold, underlined
+" or italicized" typefaces, simply assign 1 or 0 to the appropriate variable.
+" Default values:
+let g:neosolarized_bold = 1
+let g:neosolarized_underline = 1
+let g:neosolarized_italic = 0
+
+" Used to enable/disable "bold as bright" in Neovim terminal. If colors of bold
+" text output by commands like `ls` aren't what you expect, you might want to
+" try disabling this option. Default value:
+let g:neosolarized_termBoldAsBright = 1
+
+" NETRW config
+" configure the netrw file explorer
+" make netrw like nerdtree
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+" Auto open the explorer
+" augroup ProjectDrawer
+"   autocmd!
+"   autocmd VimEnter * :Vexplore
+" augroup END
+
+" Change directory to the current buffer when opening files.
+set autochdir
+
+"" Toggle netrw to open / close on the left
+"com!  -nargs=* -bar -bang -complete=dir  Lexplore  call netrw#Lexplore(<q-args>, <bang>0)
+
+"fun! Lexplore(dir, right)
+  "if exists("t:netrw_lexbufnr")
+  "" close down netrw explorer window
+  "let lexwinnr = bufwinnr(t:netrw_lexbufnr)
+  "if lexwinnr != -1
+    "let curwin = winnr()
+    "exe lexwinnr."wincmd w"
+    "close
+    "exe curwin."wincmd w"
+  "endif
+  "unlet t:netrw_lexbufnr
+
+  "else
+    "" open netrw explorer window in the dir of current file
+    "" (even on remote files)
+    "let path = substitute(exists("b:netrw_curdir")? b:netrw_curdir : expand("%:p"), '^\(.*[/\\]\)[^/\\]*$','\1','e')
+    "exe (a:right? "botright" : "topleft")." vertical ".((g:netrw_winsize > 0)? (g:netrw_winsize*winwidth(0))/100 : -g:netrw_winsize) . " new"
+    "if a:dir != ""
+      "exe "Explore ".a:dir
+    "else
+      "exe "Explore ".path
+    "endif
+    "setlocal winfixwidth
+    "let t:netrw_lexbufnr = bufnr("%")
+  "endif
+"endfun
+
+" FZF config
+" " Empty value to disable preview window altogether
+let g:fzf_preview_window = ''
+
+" Always enable preview window on the right with 60% width
+let g:fzf_preview_window = 'right:60%'
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R'
+
+" [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
+" Fzf
+nnoremap <leader><leader> :GFiles<CR>
+nnoremap <leader>fi       :Files<CR>
+nnoremap <leader>C        :Colors<CR>
+nnoremap <leader><CR>     :Buffers<CR>
+nnoremap <leader>fl       :Lines<CR>
+nnoremap <leader>ag       :Ag! <C-R><C-W><CR>
+nnoremap <leader>m        :History<CR>
+
+" ALE
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1
+" Set this. Airline will handle the rest.
+let g:airline#extensions#ale#enabled = 1
+" only lint on save
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+" You can disable this option too
+" if you don't want linters to run on opening a file
+let g:ale_lint_on_enter = 0
+" Define our linters
+let g:ale_linters = {
+\	'javascript': ['prettier','eslint'],
+\	'go': ['gofmt', 'goimports']
+\}
+
+" NerdTree settings
+map <C-P> :NERDTreeToggle<CR>
+" Open vim on load
+autocmd vimenter * NERDTree
