@@ -105,10 +105,14 @@
 # Use conditional git includes to automatically configure our git details
 # https://www.kevinkuszyk.com/2018/12/10/git-tips-6-using-git-with-multiple-email-addresses/
 [includeIf "gitdir:repos/"]
-        path = .gitconfig-atlas
+        path = ~/.gitconfig-atlas
 [includeIf "gitdir:~/.dotfiles/"]
-        path = .gitconfig-atlas
+        path = ~/.gitconfig-atlas
 [includeIf "gitdir:glab/"]
-        path = .gitconfig-glab
+        path = ~/.gitconfig-glab
 [protocol]
 	version = 2
+[user]
+	signingkey = 2EAD15E6E6FB4DBD
+[gpg]
+	program = gpg

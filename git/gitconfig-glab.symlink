@@ -1,10 +1,10 @@
 [User]
   name = Ezekiel Kigbo
   email = ekigbo@gitlab.com
-  signingKey = B86ED2EAE89964A2
+  signingKey = 2EAD15E6E6FB4DBD
 
 [gpg]
-  program = gpg2
+  program = gpg
 
 [commit]
   gpgsign = true
