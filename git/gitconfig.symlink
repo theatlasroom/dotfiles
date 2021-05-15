@@ -113,6 +113,12 @@
 [protocol]
 	version = 2
 [user]
-	signingkey = 2EAD15E6E6FB4DBD
+	signingKey = 1F9101107D0049E8
+	name = Ezekiel Kigbo
+	email = ekigbo@gitlab.com
 [gpg]
 	program = gpg
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = main
