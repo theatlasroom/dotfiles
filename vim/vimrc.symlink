@@ -23,8 +23,8 @@ set colorcolumn=80
 call plug#begin('~/.vim/plugged')
 
 " Theme / Colour schemes
-"Plug 'lifepillar/vim-solarized8'
-" Plug 'ayu-theme/ayu-vim' " or other package manager
+Plug 'lifepillar/vim-solarized8'
+Plug 'ayu-theme/ayu-vim' " or other package manager
 
 " Utils
 Plug 'scrooloose/nerdcommenter'
@@ -49,7 +49,7 @@ set termguicolors
 " set background=dark
 " colorscheme solarized8
 
-colorscheme delek
+colorscheme shine
 
 " Vim surround settings
 " Add spaces after comment delimiters by default

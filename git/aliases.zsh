@@ -17,3 +17,6 @@ alias gfix='git commit -a --fixup'
 alias gpfl='git push --force-with-lease'
 alias gdf='git diff --name-only'
 alias gdn='gdf'
+
+# Add changes and continue the rebase
+alias garbc='ga . && grbc'
