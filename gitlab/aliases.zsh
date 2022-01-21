@@ -102,3 +102,8 @@ gitcheckout-tag(){
   gdk restart
 }
 alias gctag="gitcheckout-tag"
+alias preparemr="bin/rake gettext:regenerate && yarn lint:eslint:all:fix && yarn lint:prettier:fix"
+alias spiritbomb=preparemr
+
+alias secee="ee && ./scripts/security-harness"
+alias glsec="secee"
