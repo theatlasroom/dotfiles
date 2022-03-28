@@ -201,3 +201,6 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# dont vendor nvim/vim plugins
+config/nvim/.vim/plugged
