@@ -20,7 +20,7 @@ alias killjag="killall -KILL jaeger-all-in-one"
 alias killglab="killnode && killruby && killpostgres && killjag && killghrp"
 
 # glab dirs
-alias foss="~/glab/gdk-foss/gitlab"
+alias foss="~/glab/gdk/gitlab-foss"
 alias ee="~/glab/gdk/gitlab"
 alias gl="ee"
 alias glab="ee"

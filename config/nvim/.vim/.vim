@@ -1,0 +1,1 @@
+/Users/vegito/.dotfiles/config/nvim/.vim

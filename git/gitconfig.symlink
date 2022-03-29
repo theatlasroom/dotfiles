@@ -112,10 +112,6 @@
         path = ~/.gitconfig-glab
 [protocol]
 	version = 2
-[user]
-	signingKey = 1F9101107D0049E8
-	name = Ezekiel Kigbo
-	email = ekigbo@gitlab.com
 [gpg]
 	program = gpg
 [commit]
