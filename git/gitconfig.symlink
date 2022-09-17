@@ -113,8 +113,12 @@
 [protocol]
 	version = 2
 [gpg]
-	program = gpg
+	program = /opt/homebrew/bin/gpg
 [commit]
 	gpgsign = true
 [init]
 	defaultBranch = main
+[credential]
+	helper = osxkeychain
+[user]
+	signingkey = D280E1A51B40DDA3C917DF2BB3FA93EBD4C4AAE4

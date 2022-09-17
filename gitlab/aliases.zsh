@@ -51,10 +51,13 @@ gffenable(){
 gffdisable(){
   echo "Feature.disable(:$1)" | bundle exec rails c
 }
+gfflist(){
+  echo "Feature.all.filter { |f| f.state == :on }.collect { |f| f.name }" | bundle exec rails c
+}
 # Enable / disable feature flags
-# $ gffe feature_flag_to_enable
 alias gffe="gffenable"
 alias gffd="gffdisable"
+alias gffl="gfflist"
 
 # Attempts to automatically update master and return to the current branch
 # Useful just before a rebase

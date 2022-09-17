@@ -100,5 +100,12 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${HOMEBREW_PATH}/openssl@1.1 --wi
 # fix pinetry for gpg
 export GPG_TTY=$(tty)
 
-# Load asdf
+# start asdf
 source "/Users/vegito/.asdf/asdf.sh"
+
+# support bash autocompletion
+autoload bashcompinit
+bashcompinit
+
+# use starship prompt
+eval "$(starship init zsh)"

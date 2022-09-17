@@ -13,3 +13,5 @@ grakeout_simple(){
 
 alias groute="grakeout"
 alias groutesim="grakeout_simple"
+
+alias bsr="bin/spring rspec --color --format d "
