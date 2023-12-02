@@ -252,7 +252,8 @@ if ! zstyle -t ':prezto:module:git:alias' skip 'yes'; then
   alias glum='git pull upstream master'
 
   alias gwch='git whatchanged -p --abbrev-commit --pretty=medium'
-  alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "--wip-- [skip ci]"'
+  # This was interferring with another `gwip` alias that does not stage all items
+  alias gwipa='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "--wip-- [skip ci]"'
   function grename() {
     if [[ -z "$1" || -z "$2" ]]; then
       echo "Usage: $0 old_branch new_branch"

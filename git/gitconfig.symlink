@@ -113,7 +113,7 @@
 [protocol]
 	version = 2
 [gpg]
-	program = /opt/homebrew/bin/gpg
+	program = gpg
 [commit]
 	gpgsign = true
 [init]

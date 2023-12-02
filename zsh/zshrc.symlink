@@ -1,8 +1,24 @@
+# Enable zsh profiling
+zmodload zsh/zprof
+
 # DEBUGGING
 # Debug mode
 # set -x
 # Show all sourced files
 # setopt SOURCE_TRACE
+
+######################################
+# Speed fix, ensure we only check the 
+# zcompdump file once a day
+# https://medium.com/@dannysmith/little-thing-2-speeding-up-zsh-f1860390f92
+autoload -Uz compinit
+
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+
+compinit -C
+####################################
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
@@ -108,4 +124,16 @@ autoload bashcompinit
 bashcompinit
 
 # use starship prompt
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
+
+# source the rust ESP32 envvars
+source ~/export-esp.sh
+
+# execute the profiler
+zprof
+
+# Spaceship prompt config
+SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_DOCKER_CONTEXT_SHOW=false
+SPACESHIP_NODE_SHOW=false
+SPACESHIP_GIT_STATUS_SHOW=false

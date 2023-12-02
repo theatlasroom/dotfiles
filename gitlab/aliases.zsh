@@ -22,8 +22,7 @@ alias killglab="killnode && killruby && killpostgres && killjag && killghrp"
 # glab dirs
 alias foss="~/glab/gdk/gitlab-foss"
 alias ee="~/glab/gdk/gitlab"
-alias gl="ee"
-alias glab="ee"
+alias glee="ee"
 alias glui="~/glab/gitlab-ui"
 
 alias killgdk="ps aux | grep gitlab | awk '{print $2}' | xargs kill"
@@ -39,12 +38,26 @@ alias gstop="gdk stop"
 # Skip pipelines on push, not quite working 🤔
 alias gpnoci="git push -o ci.skip"
 alias gpflnoci="git push -o ci.skip --force-with-lease"
+# Force with lease, skip verify by default
+alias gpfl="git push --force-with-lease --no-verify"
+alias gpflverify="git push --force-with-lease"
 # Refresh gdk
 gdk-refresh() {
-		yarn && bundle
-		bin/rails db:migrate RAILS_ENV=development
+		bundle exec rails db:migrate RAILS_ENV=development
 }
 alias gfresh="gdk-refresh"
+gffenableall(){
+  for i in "$@"
+  do
+	echo "Feature.enable(:$i)" | bundle exec rails c
+  done
+}
+gffdisableall(){
+  for i in "$@"
+  do
+	echo "Feature.disable(:$i)" | bundle exec rails c
+  done
+}
 gffenable(){
   echo "Feature.enable(:$1)" | bundle exec rails c
 }
@@ -52,12 +65,14 @@ gffdisable(){
   echo "Feature.disable(:$1)" | bundle exec rails c
 }
 gfflist(){
-  echo "Feature.all.filter { |f| f.state == :on }.collect { |f| f.name }" | bundle exec rails c
+  echo "Feature.all.filter { |f| f.state == :on }.collect { |f| f.name }.sort{ |a,b| a <=> b }" | bundle exec rails c
 }
 # Enable / disable feature flags
 alias gffe="gffenable"
 alias gffd="gffdisable"
 alias gffl="gfflist"
+alias gffeall="gffenableall"
+alias gffdall="gffdisableall"
 
 # Attempts to automatically update master and return to the current branch
 # Useful just before a rebase
@@ -72,12 +87,6 @@ gupdate-master(){
   # udpate gdk
   gdk update
 
-  
-  echo "Checking out the schema file"
-
-  # remove the annoying changes in db/schema
-  git checkout db
-
   echo "Restoring branch $branch_name"
 
   # restore original branch
@@ -87,6 +96,11 @@ gupdate-master(){
 
   # refresh the gdk
   gfresh
+
+  echo "Checking out the schema file"
+
+  # remove the annoying changes in db/schema
+  git checkout db  
 }
 alias gupd="gupdate-master"
 
@@ -100,13 +114,16 @@ gitcheckout-tag(){
   git checkout db
 
   # refresh gdk and assets
-  yarn && bin/rake db:migrate RAILS_ENV=development
+  yarn && bundle exec rails db:migrate RAILS_ENV=development
   gdk reconfigure
   gdk restart
 }
 alias gctag="gitcheckout-tag"
-alias preparemr="bin/rake gettext:regenerate && yarn lint:eslint:all:fix && yarn lint:prettier:fix"
-alias spiritbomb=preparemr
+alias glpreparemr="bin/rake gettext:regenerate && yarn lint:eslint:all:fix && yarn lint:prettier:fix"
+alias glspiritbomb=glpreparemr
 
 alias secee="ee && ./scripts/security-harness"
 alias glsec="secee"
+
+alias glshallowupdate="yarn && bundle install && bundle exec rails db:migrate"
+alias glsu=glshallowupdate
