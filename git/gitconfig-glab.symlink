@@ -1,5 +1,14 @@
-[User]
+[user]
   name = Ezekiel Kigbo
   email = ekigbo@gitlab.com
-  signingKey = B3FA93EBD4C4AAE4
+  # signingKey = B3FA93EBD4C4AAE4
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINKlR7iQODtMI7uSFkrrUAAWnlFQ/Zjtko0f1LNWB8dJ
 
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+  gpgsign = true

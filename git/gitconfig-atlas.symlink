@@ -1,4 +1,13 @@
+[init]
+	defaultBranch = main
+  
 [user]
   name = Ezekiel
   email = theatlasroom@gmail.com 
+	signingkey = D280E1A51B40DDA3C917DF2BB3FA93EBD4C4AAE4
 
+[gpg]
+	program = gpg
+
+[protocol]
+	version = 2  

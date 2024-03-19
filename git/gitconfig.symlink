@@ -110,15 +110,11 @@
         path = ~/.gitconfig-atlas
 [includeIf "gitdir:glab/"]
         path = ~/.gitconfig-glab
-[protocol]
-	version = 2
-[gpg]
-	program = gpg
+[includeIf "gitdir:glab/gdk/gitlab"]
+        path = ~/.gitconfig-glab
 [commit]
 	gpgsign = true
 [init]
 	defaultBranch = main
 [credential]
 	helper = osxkeychain
-[user]
-	signingkey = D280E1A51B40DDA3C917DF2BB3FA93EBD4C4AAE4
