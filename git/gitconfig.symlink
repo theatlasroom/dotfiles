@@ -108,12 +108,12 @@
         path = ~/.gitconfig-atlas
 [includeIf "gitdir:~/.dotfiles/"]
         path = ~/.gitconfig-atlas
-[includeIf "gitdir:glab/"]
+[includeIf "gitdir:~/glab/"]
         path = ~/.gitconfig-glab
-[includeIf "gitdir:glab/gdk/gitlab"]
-        path = ~/.gitconfig-glab
-[commit]
-	gpgsign = true
+[protocol]
+	version = 2
+[gpg]
+	program = gpg
 [init]
 	defaultBranch = main
 [credential]

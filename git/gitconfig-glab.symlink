@@ -1,8 +1,7 @@
 [user]
-  name = Ezekiel Kigbo
-  email = ekigbo@gitlab.com
-  # signingKey = B3FA93EBD4C4AAE4
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINKlR7iQODtMI7uSFkrrUAAWnlFQ/Zjtko0f1LNWB8dJ
+	name = Ezekiel Kigbo
+	email = ekigbo@gitlab.com
+	signingkey = 3E40A1BF99B4D9B7
 
 [gpg]
   format = ssh

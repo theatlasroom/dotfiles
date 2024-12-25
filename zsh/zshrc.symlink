@@ -7,18 +7,7 @@ zmodload zsh/zprof
 # Show all sourced files
 # setopt SOURCE_TRACE
 
-######################################
-# Speed fix, ensure we only check the 
-# zcompdump file once a day
-# https://medium.com/@dannysmith/little-thing-2-speeding-up-zsh-f1860390f92
-autoload -Uz compinit
-
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
-
-compinit -C
-####################################
+export GL_MODE=false
 
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
@@ -107,11 +96,15 @@ plugins=(
 # Load zprezto config
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
-# Added by GDK bootstrap
-export PKG_CONFIG_PATH="${HOMEBREW_PATH}/icu4c/lib/pkgconfig:${PKG_CONFIG_PATH}"
+# Load asdf
+. /usr/local/opt/asdf/libexec/asdf.sh
 
 # Added by GDK bootstrap
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${HOMEBREW_PATH}/openssl@1.1 --with-readline-dir=/usr/local/opt/readline"
+export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
+# Added by GDK bootstrap
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1 --with-readline-dir=/usr/local/opt/readline"
+export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 
 # fix pinetry for gpg
 export GPG_TTY=$(tty)
